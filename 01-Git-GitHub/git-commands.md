@@ -53,8 +53,7 @@ Working Directory
         ▼
 GitHub Repository
 ```
-
-![Git Workflow](Git Basic Commands (1).png)
+![Git Workflow](Git%20Basic%20Commands%20%281%29.png)
 
 The above diagram illustrates the standard Git workflow from modifying files to pushing changes to GitHub.
 
