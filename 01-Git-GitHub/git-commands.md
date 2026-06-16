@@ -1,6 +1,6 @@
 
 
-## Branch Management (Advanced)
+## Branch Management 
 
 ### List All Local and Remote Branches
 
