@@ -382,7 +382,15 @@ git rebase --abort
 
 ## Git Reset
 
-`git reset` changes the current `HEAD` pointer to a specified commit.
+`git reset` moves the current `HEAD` pointer to a specified commit. Depending on the option (`--soft`, `--mixed`, or `--hard`), it also affects the **staging area** and **working directory** differently.
+
+| Reset Type | Commits | Staging Area | Working Directory |
+|------------|----------|--------------|------------------|
+| `--soft`   | Removed | Kept | Kept |
+| `--mixed`  | Removed | Cleared | Kept |
+| `--hard`   | Removed | Cleared | Cleared |
+
+---
 
 ### Soft Reset
 
@@ -390,17 +398,110 @@ git rebase --abort
 git reset --soft HEAD~1
 ```
 
-### Mixed Reset
+**What it does:**
+- Moves `HEAD` back by one commit.
+- Removes the last commit from the commit history.
+- **Keeps all changes staged** (ready to commit again).
+- Does **not** modify your working files.
+
+**Use case:**  
+When you want to undo the last commit but keep all changes ready for recommitting.
+
+**Before:**
+```text
+A --- B --- C (HEAD)
+```
+
+**After:**
+```text
+A --- B (HEAD)
+         ↑
+    Changes from C are still staged.
+```
+
+---
+
+### Mixed Reset (Default)
 
 ```bash
 git reset --mixed HEAD~1
 ```
+
+or simply
+
+```bash
+git reset HEAD~1
+```
+
+**What it does:**
+- Moves `HEAD` back by one commit.
+- Removes the last commit from history.
+- **Unstages all changes**, but keeps them in your working directory.
+- Your files remain exactly as they were.
+
+**Use case:**  
+When you want to undo a commit and review or modify the changes before staging and committing them again.
+
+**Before:**
+```text
+A --- B --- C (HEAD)
+```
+
+**After:**
+```text
+A --- B (HEAD)
+         ↑
+ Changes from C are kept as unstaged files.
+```
+
+---
 
 ### Hard Reset
 
 ```bash
 git reset --hard HEAD~1
 ```
+
+**What it does:**
+- Moves `HEAD` back by one commit.
+- Removes the last commit from history.
+- Clears the staging area.
+- **Deletes all local file changes related to that commit.**
+
+⚠️ **Warning:** This operation permanently discards uncommitted changes. Use it carefully.
+
+**Use case:**  
+When you want to completely throw away the last commit and all associated local changes.
+
+**Before:**
+```text
+A --- B --- C (HEAD)
+```
+
+**After:**
+```text
+A --- B (HEAD)
+```
+
+All changes introduced by commit `C` are removed from both the repository and your working directory.
+
+---
+
+### Quick Comparison
+
+| Feature | `--soft` | `--mixed` | `--hard` |
+|----------|-----------|------------|-----------|
+| Moves `HEAD` | ✅ | ✅ | ✅ |
+| Removes commit | ✅ | ✅ | ✅ |
+| Keeps changes in working directory | ✅ | ✅ | ❌ |
+| Keeps changes staged | ✅ | ❌ | ❌ |
+| Safe for beginners | ✅ | ✅ | ⚠️ Use carefully |
+
+### Memory Trick
+
+- **Soft Reset** → "Undo commit, keep everything staged."
+- **Mixed Reset** → "Undo commit, keep files, unstage them."
+- **Hard Reset** → "Undo commit and delete everything."
 
 ---
 
