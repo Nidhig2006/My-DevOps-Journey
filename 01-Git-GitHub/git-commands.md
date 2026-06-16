@@ -382,13 +382,9 @@ git rebase --abort
 
 ## Git Reset
 
-![Git Reset](Git%20Reset%20%281%29.png)
-
 `git reset` changes the current `HEAD` pointer to a specified commit.
 
 ### Soft Reset
-
-![Git Soft Reset](git%20softreset%20prac%20%281%29.png)
 
 ```bash
 git reset --soft HEAD~1
@@ -396,15 +392,11 @@ git reset --soft HEAD~1
 
 ### Mixed Reset
 
-![Git Mixed Reset](git%20mixedreset%20prac%20%281%29.png)
-
 ```bash
 git reset --mixed HEAD~1
 ```
 
 ### Hard Reset
-
-![Git Hard Reset](git%20hardreset%20prac%20%281%29.png)
 
 ```bash
 git reset --hard HEAD~1
