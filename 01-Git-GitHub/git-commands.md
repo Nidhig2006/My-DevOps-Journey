@@ -340,7 +340,7 @@ git branch -D branch-name
 
 ## Merge and Rebase
 
-![Git Merge vs Git Rebase](Git%20Merge%20vs%20Git%20Rebase%20%281%29.png)
+![Git Merge vs Git Rebase](GIt%20Merge%20vs%20Git%20Rebase%20%281%29.png)
 
 | Git Merge                     | Git Rebase                           |
 | ----------------------------- | ------------------------------------ |
