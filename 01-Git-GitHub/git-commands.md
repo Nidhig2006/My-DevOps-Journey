@@ -53,6 +53,7 @@ Working Directory
         ▼
 GitHub Repository
 ```
+
 ![Git Workflow](Git%20Basic%20Commands%20%281%29.png)
 
 The above diagram illustrates the standard Git workflow from modifying files to pushing changes to GitHub.
@@ -61,7 +62,7 @@ The above diagram illustrates the standard Git workflow from modifying files to 
 
 ## Git Stages
 
-![Git Stages](Git Stages (1).png)
+![Git Stages](Git%20Stages%20%281%29.png)
 
 Git manages files through three primary stages:
 
@@ -267,7 +268,7 @@ git fetch origin
 
 ## Branch Management
 
-![Git Branches](Git Branches (1).png)
+![Git Branches](Git%20Branches%20%281%29.png)
 
 ### List Local Branches
 
@@ -339,7 +340,7 @@ git branch -D branch-name
 
 ## Merge and Rebase
 
-![Git Merge vs Git Rebase](Git Merge vs Git Rebase (1).png)
+![Git Merge vs Git Rebase](Git%20Merge%20vs%20Git%20Rebase%20%281%29.png)
 
 | Git Merge                     | Git Rebase                           |
 | ----------------------------- | ------------------------------------ |
@@ -381,13 +382,13 @@ git rebase --abort
 
 ## Git Reset
 
-![Git Reset](Git Reset (1).png)
+![Git Reset](Git%20Reset%20%281%29.png)
 
 `git reset` changes the current `HEAD` pointer to a specified commit.
 
 ### Soft Reset
 
-![Git Soft Reset](git softreset prac (1).png)
+![Git Soft Reset](git%20softreset%20prac%20%281%29.png)
 
 ```bash
 git reset --soft HEAD~1
@@ -395,7 +396,7 @@ git reset --soft HEAD~1
 
 ### Mixed Reset
 
-![Git Mixed Reset](git mixedreset prac (1).png)
+![Git Mixed Reset](git%20mixedreset%20prac%20%281%29.png)
 
 ```bash
 git reset --mixed HEAD~1
@@ -403,7 +404,7 @@ git reset --mixed HEAD~1
 
 ### Hard Reset
 
-![Git Hard Reset](git hardreset prac (1).png)
+![Git Hard Reset](git%20hardreset%20prac%20%281%29.png)
 
 ```bash
 git reset --hard HEAD~1
@@ -413,7 +414,7 @@ git reset --hard HEAD~1
 
 ## Git Stash
 
-![Git Stash](Git Stash (1).png)
+![Git Stash](Git%20Stash%20%281%29.png)
 
 ### Save Current Changes
 
@@ -455,7 +456,7 @@ git stash clear
 
 ## Git Cherry-pick
 
-![Git Cherry-pick](Git CherryPick (1).png)
+![Git Cherry-pick](Git%20CherryPick%20%281%29.png)
 
 ```bash
 git cherry-pick <commit-id>
@@ -589,7 +590,7 @@ git config --global alias.br branch
 
 ## Common Git Errors
 
-![Git Error](Git Error (1).png)
+![Git Error](Git%20Error%20%281%29.png)
 
 ### Failed to Push Some Refs
 
@@ -622,7 +623,7 @@ git remote add origin <repository-url>
 
 ## Working with GitHub
 
-![Working on GitHub](Working-on-Github (1).png)
+![Working on GitHub](Working-on-Github%20%281%29.png)
 
 GitHub is a cloud-based platform for hosting Git repositories. It provides collaboration features such as pull requests, issue tracking, code reviews, and project management.
 
