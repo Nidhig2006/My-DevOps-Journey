@@ -25,6 +25,7 @@ A comprehensive collection of commonly used Git commands, workflows, and concept
 * Cleaning Repository
 * Git Aliases
 * Common Git Errors
+* Working with GitHub
 * Daily Git Workflow
 
 ---
@@ -53,7 +54,7 @@ Working Directory
 GitHub Repository
 ```
 
-![Git Workflow](images/git-basic-commands.png)
+![Git Workflow](Git%20Basic%20Commands%20%281%29.png)
 
 The above diagram illustrates the standard Git workflow from modifying files to pushing changes to GitHub.
 
@@ -61,7 +62,7 @@ The above diagram illustrates the standard Git workflow from modifying files to 
 
 ## Git Stages
 
-![Git Stages](images/git-stages.png)
+![Git Stages](Git%20Stages%20%281%29.png)
 
 Git manages files through three primary stages:
 
@@ -87,15 +88,11 @@ The local database where committed snapshots are permanently stored.
 git config --global user.name "Your Name"
 ```
 
-Sets the global username used in commits.
-
 ### Configure Email
 
 ```bash
 git config --global user.email "your-email@example.com"
 ```
-
-Sets the global email address associated with commits.
 
 ### View Git Configuration
 
@@ -103,15 +100,11 @@ Sets the global email address associated with commits.
 git config --list
 ```
 
-Displays all configured Git settings.
-
 ### Set Default Branch Name
 
 ```bash
 git config --global init.defaultBranch main
 ```
-
-Sets `main` as the default branch name for newly created repositories.
 
 ---
 
@@ -123,15 +116,11 @@ Sets `main` as the default branch name for newly created repositories.
 git init
 ```
 
-Creates a new Git repository in the current directory.
-
 ### Clone an Existing Repository
 
 ```bash
 git clone <repository-url>
 ```
-
-Creates a local copy of a remote repository.
 
 Example:
 
@@ -149,20 +138,11 @@ git clone https://github.com/username/my-devops-journey.git
 git status
 ```
 
-Displays:
-
-* Current branch.
-* Modified files.
-* Untracked files.
-* Staged files.
-
 ### View Commit History
 
 ```bash
 git log
 ```
-
-Displays the complete commit history.
 
 ### View Commit History in One Line
 
@@ -170,23 +150,17 @@ Displays the complete commit history.
 git log --oneline
 ```
 
-Displays a compact commit history.
-
 ### View Commit History as a Graph
 
 ```bash
 git log --graph --oneline --decorate --all
 ```
 
-Displays the branch structure and commit history graphically.
-
 ### View HEAD History
 
 ```bash
 git reflog
 ```
-
-Shows all recent updates to the `HEAD` pointer.
 
 ---
 
@@ -198,15 +172,11 @@ Shows all recent updates to the `HEAD` pointer.
 git add filename
 ```
 
-Stages a single file.
-
 ### Add All Files
 
 ```bash
 git add .
 ```
-
-Stages all new and modified files.
 
 ### Add All Changes
 
@@ -214,15 +184,11 @@ Stages all new and modified files.
 git add -A
 ```
 
-Stages new, modified, and deleted files.
-
 ### Unstage a File
 
 ```bash
 git restore --staged filename
 ```
-
-Removes a file from the staging area while keeping local changes.
 
 ---
 
@@ -234,23 +200,17 @@ Removes a file from the staging area while keeping local changes.
 git commit -m "Commit message"
 ```
 
-Creates a new commit from staged changes.
-
 ### Commit Tracked Files Directly
 
 ```bash
 git commit -am "Updated project"
 ```
 
-Stages and commits all tracked files.
-
 ### Modify the Last Commit
 
 ```bash
 git commit --amend
 ```
-
-Updates the previous commit.
 
 ---
 
@@ -262,15 +222,11 @@ Updates the previous commit.
 git remote add origin <repository-url>
 ```
 
-Adds a remote repository named `origin`.
-
 ### View Remote Repositories
 
 ```bash
 git remote -v
 ```
-
-Displays configured remote URLs.
 
 ### Change the Remote URL
 
@@ -278,15 +234,11 @@ Displays configured remote URLs.
 git remote set-url origin <new-url>
 ```
 
-Updates the URL of the remote repository.
-
 ### Remove a Remote Repository
 
 ```bash
 git remote remove origin
 ```
-
-Removes the configured remote.
 
 ### Push Changes
 
@@ -294,15 +246,11 @@ Removes the configured remote.
 git push origin main
 ```
 
-Uploads local commits to the remote repository.
-
 ### Push and Set Upstream Branch
 
 ```bash
 git push -u origin main
 ```
-
-Pushes changes and creates a tracking relationship.
 
 ### Pull Latest Changes
 
@@ -310,23 +258,17 @@ Pushes changes and creates a tracking relationship.
 git pull origin main
 ```
 
-Downloads and merges remote changes.
-
 ### Fetch Latest Changes
 
 ```bash
 git fetch origin
 ```
 
-Downloads changes without merging them.
-
 ---
 
 ## Branch Management
 
-![Git Branches](images/git-branches.png)
-
-Branches allow developers to work independently without affecting the main codebase.
+![Git Branches](Git%20Branches%20%281%29.png)
 
 ### List Local Branches
 
@@ -398,7 +340,7 @@ git branch -D branch-name
 
 ## Merge and Rebase
 
-![Git Merge vs Git Rebase](images/git-merge-vs-rebase.png)
+![Git Merge vs Git Rebase](GIt%20Merge%20vs%20Git%20Rebase%20%281%29.png)
 
 | Git Merge                     | Git Rebase                           |
 | ----------------------------- | ------------------------------------ |
@@ -440,47 +382,132 @@ git rebase --abort
 
 ## Git Reset
 
-![Git Reset](images/git-reset.png)
+`git reset` moves the current `HEAD` pointer to a specified commit. Depending on the option (`--soft`, `--mixed`, or `--hard`), it also affects the **staging area** and **working directory** differently.
 
-`git reset` changes the current `HEAD` pointer to a specified commit.
+| Reset Type | Commits | Staging Area | Working Directory |
+|------------|----------|--------------|------------------|
+| `--soft`   | Removed | Kept | Kept |
+| `--mixed`  | Removed | Cleared | Kept |
+| `--hard`   | Removed | Cleared | Cleared |
+
+---
 
 ### Soft Reset
-
-![Git Soft Reset](images/git-soft-reset.png)
 
 ```bash
 git reset --soft HEAD~1
 ```
 
-Moves `HEAD` while keeping all changes staged.
+**What it does:**
+- Moves `HEAD` back by one commit.
+- Removes the last commit from the commit history.
+- **Keeps all changes staged** (ready to commit again).
+- Does **not** modify your working files.
 
-### Mixed Reset
+**Use case:**  
+When you want to undo the last commit but keep all changes ready for recommitting.
 
-![Git Mixed Reset](images/git-mixed-reset.png)
+**Before:**
+```text
+A --- B --- C (HEAD)
+```
+
+**After:**
+```text
+A --- B (HEAD)
+         ↑
+    Changes from C are still staged.
+```
+
+---
+
+### Mixed Reset (Default)
 
 ```bash
 git reset --mixed HEAD~1
 ```
 
-Moves `HEAD` and unstages changes while preserving files.
+or simply
+
+```bash
+git reset HEAD~1
+```
+
+**What it does:**
+- Moves `HEAD` back by one commit.
+- Removes the last commit from history.
+- **Unstages all changes**, but keeps them in your working directory.
+- Your files remain exactly as they were.
+
+**Use case:**  
+When you want to undo a commit and review or modify the changes before staging and committing them again.
+
+**Before:**
+```text
+A --- B --- C (HEAD)
+```
+
+**After:**
+```text
+A --- B (HEAD)
+         ↑
+ Changes from C are kept as unstaged files.
+```
+
+---
 
 ### Hard Reset
-
-![Git Hard Reset](images/git-hard-reset.png)
 
 ```bash
 git reset --hard HEAD~1
 ```
 
-Moves `HEAD` and permanently removes staged and local changes.
+**What it does:**
+- Moves `HEAD` back by one commit.
+- Removes the last commit from history.
+- Clears the staging area.
+- **Deletes all local file changes related to that commit.**
+
+⚠️ **Warning:** This operation permanently discards uncommitted changes. Use it carefully.
+
+**Use case:**  
+When you want to completely throw away the last commit and all associated local changes.
+
+**Before:**
+```text
+A --- B --- C (HEAD)
+```
+
+**After:**
+```text
+A --- B (HEAD)
+```
+
+All changes introduced by commit `C` are removed from both the repository and your working directory.
+
+---
+
+### Quick Comparison
+
+| Feature | `--soft` | `--mixed` | `--hard` |
+|----------|-----------|------------|-----------|
+| Moves `HEAD` | ✅ | ✅ | ✅ |
+| Removes commit | ✅ | ✅ | ✅ |
+| Keeps changes in working directory | ✅ | ✅ | ❌ |
+| Keeps changes staged | ✅ | ❌ | ❌ |
+| Safe for beginners | ✅ | ✅ | ⚠️ Use carefully |
+
+### Memory Trick
+
+- **Soft Reset** → "Undo commit, keep everything staged."
+- **Mixed Reset** → "Undo commit, keep files, unstage them."
+- **Hard Reset** → "Undo commit and delete everything."
 
 ---
 
 ## Git Stash
 
-![Git Stash](images/git-stash.png)
-
-Temporarily stores uncommitted changes.
+![Git Stash](Git%20Stash%20%281%29.png)
 
 ### Save Current Changes
 
@@ -522,15 +549,13 @@ git stash clear
 
 ## Git Cherry-pick
 
-![Git Cherry-pick](images/git-cherry-pick.png)
-
-Applies a specific commit from one branch onto another branch.
+![Git Cherry-pick](Git%20CherryPick%20%281%29.png)
 
 ```bash
 git cherry-pick <commit-id>
 ```
 
-This command is useful when only a single commit needs to be transferred.
+Applies a specific commit from one branch onto another branch.
 
 ---
 
@@ -610,8 +635,6 @@ git restore .
 git revert <commit-id>
 ```
 
-Creates a new commit that reverses the specified commit.
-
 ---
 
 ## Cleaning Repository
@@ -656,13 +679,11 @@ git config --global alias.co checkout
 git config --global alias.br branch
 ```
 
-Aliases reduce typing by creating short forms for commonly used commands.
-
 ---
 
 ## Common Git Errors
 
-![Git Error](images/git-error.png)
+![Git Error](Git%20Error%20%281%29.png)
 
 ### Failed to Push Some Refs
 
@@ -672,8 +693,6 @@ git push origin main
 ```
 
 ### Merge Conflict
-
-Resolve the conflicting files manually, then run:
 
 ```bash
 git add .
@@ -692,6 +711,14 @@ git switch main
 git remote remove origin
 git remote add origin <repository-url>
 ```
+
+---
+
+## Working with GitHub
+
+![Working on GitHub](Working-on-Github%20%281%29.png)
+
+GitHub is a cloud-based platform for hosting Git repositories. It provides collaboration features such as pull requests, issue tracking, code reviews, and project management.
 
 ---
 

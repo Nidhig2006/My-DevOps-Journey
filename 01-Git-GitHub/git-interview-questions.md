@@ -1,303 +1,422 @@
+
 ## Git Basics
 
 <details>
-<summary><strong>What is the difference between Git and GitHub?</strong></summary>
+<summary>What is Git?</summary>
 
-**Git** is a distributed version control system used to track changes in source code.
-
-**GitHub** is a cloud-based platform that hosts Git repositories and provides collaboration features like pull requests, issues, and actions.
-
-| Git | GitHub |
-|-----|---------|
-| Version Control System | Git Repository Hosting Platform |
-| Works locally | Cloud-based service |
-| Tracks file changes | Stores and manages repositories |
-
+Git is a distributed version control system that tracks changes in source code and allows multiple developers to collaborate efficiently.
 </details>
 
----
-
 <details>
-<summary><strong>Why do we use Git?</strong></summary>
+<summary>What is the difference between Git and GitHub?</summary>
 
-Git is used to:
-- Track changes in source code.
-- Collaborate with multiple developers.
-- Maintain version history.
-- Create and manage branches.
-- Revert to previous versions if necessary.
-- Prevent accidental data loss.
-
+Git is a version control tool, while GitHub is a cloud platform that hosts Git repositories and provides collaboration features.
 </details>
 
----
+<details>
+<summary>Why is Git called a distributed version control system?</summary>
+
+Because every developer has a complete copy of the repository, including the full commit history.
+</details>
 
 <details>
-<summary><strong>What is a commit in Git?</strong></summary>
+<summary>How do you initialize a Git repository?</summary>
 
-A commit is a snapshot of the changes made to a repository at a specific point in time. Each commit has a unique SHA-1 hash that identifies it.
-
-Example:
+Use:
 ```bash
-git commit -m "Added Git interview questions"
+git init
+```
+</details>
+
+<details>
+<summary>How do you clone a remote repository?</summary>
+
+Use:
+```bash
+git clone <repository-url>
+```
+</details>
+
+<details>
+<summary>What does the .git directory contain?</summary>
+
+It contains the Git object database, commit history, references, configuration files, and metadata required to manage the repository.
+</details>
+
+<details>
+<summary>What is a commit?</summary>
+
+A commit is a snapshot of the project's tracked files at a specific point in time.
+</details>
+
+<details>
+<summary>What is the purpose of git status?</summary>
+
+It shows the current branch, staged changes, unstaged changes, and untracked files.
+</details>
+
+<details>
+<summary>What is the difference between tracked and untracked files?</summary>
+
+Tracked files are already managed by Git, while untracked files are new files that Git has not started tracking.
+</details>
+
+<details>
+<summary>What is the purpose of git add?</summary>
+
+It moves changes from the working directory to the staging area.
+</details>
+
+---
+
+## Staging and Commit
+
+<details>
+<summary>What is the staging area?</summary>
+
+The staging area (index) is an intermediate area where changes are prepared before creating a commit.
+</details>
+
+<details>
+<summary>What is the difference between git add . and git add -A?</summary>
+
+`git add .` stages changes in the current directory, while `git add -A` stages all changes including deletions across the repository.
+</details>
+
+<details>
+<summary>What does git commit -m do?</summary>
+
+It creates a new commit with the specified commit message.
+</details>
+
+<details>
+<summary>What does git commit --amend do?</summary>
+
+It modifies the most recent commit by changing its message or adding newly staged changes.
+</details>
+
+<details>
+<summary>Can you commit without staging?</summary>
+
+Yes, by using:
+```bash
+git commit -am "message"
+```
+This works only for tracked files.
+</details>
+
+---
+
+## Branching
+
+<details>
+<summary>What is a branch in Git?</summary>
+
+A branch is a lightweight movable pointer to a commit.
+</details>
+
+<details>
+<summary>Why do we use branches?</summary>
+
+Branches allow developers to work on new features or bug fixes independently without affecting the main codebase.
+</details>
+
+<details>
+<summary>How do you create a new branch?</summary>
+
+```bash
+git branch branch-name
+```
+</details>
+
+<details>
+<summary>How do you switch branches?</summary>
+
+```bash
+git switch branch-name
 ```
 
-</details>
-
----
-
-<details>
-<summary><strong>What is a branch in Git?</strong></summary>
-
-A branch is an independent line of development. It allows developers to work on new features or bug fixes without affecting the main branch.
-
-The default branch is usually called `main`.
-
-</details>
-
----
-
-<details>
-<summary><strong>What is HEAD in Git?</strong></summary>
-
-`HEAD` is a pointer that refers to the latest commit on the currently checked-out branch.
-
-You can view the current branch using:
+or
 
 ```bash
-git branch
+git checkout branch-name
 ```
-
-The branch marked with `*` is where `HEAD` is pointing.
-
 </details>
 
----
-
 <details>
-<summary><strong>What is the difference between tracked and untracked files?</strong></summary>
-
-- **Tracked files** are files that Git already knows about and monitors for changes.
-- **Untracked files** are new files that have not been added to the staging area.
-
-You can check them using:
+<summary>How do you create and switch to a new branch?</summary>
 
 ```bash
-git status
+git switch -c branch-name
 ```
+</details>
 
+<details>
+<summary>What is the difference between git switch and git checkout?</summary>
+
+`git switch` is specifically for branch switching, while `git checkout` can switch branches and restore files.
 </details>
 
 ---
 
+## Merge and Rebase
+
 <details>
-<summary><strong>What is the difference between a local repository and a remote repository?</strong></summary>
+<summary>What is a merge in Git?</summary>
 
-- **Local Repository:** Exists on your computer and stores all commits and project history.
-- **Remote Repository:** Hosted on platforms like GitHub, GitLab, or Bitbucket for collaboration and backup.
-
+A merge combines changes from one branch into another and usually creates a merge commit.
 </details>
 
----
+<details>
+<summary>What is rebase?</summary>
+
+Rebase moves or reapplies commits onto another base commit, creating a linear history.
+</details>
 
 <details>
-<summary><strong>What happens when you run <code>git add .</code>?</strong></summary>
+<summary>What is the difference between merge and rebase?</summary>
 
-The command stages all new, modified, and deleted files in the current directory for the next commit.
+Merge preserves branch history and creates a merge commit. Rebase rewrites history and creates a cleaner linear commit history.
+</details>
+
+<details>
+<summary>What is a merge conflict?</summary>
+
+A merge conflict occurs when Git cannot automatically combine changes because the same lines were modified in different branches.
+</details>
+
+<details>
+<summary>How do you resolve merge conflicts?</summary>
+
+Edit the conflicting files manually, remove conflict markers, then run:
 
 ```bash
 git add .
+git commit
 ```
+</details>
 
-After staging, verify using:
+<details>
+<summary>What does git rebase --continue do?</summary>
+
+It continues the rebase process after conflicts have been resolved.
+</details>
+
+<details>
+<summary>What does git rebase --abort do?</summary>
+
+It cancels the current rebase operation and returns the repository to its previous state.
+</details>
+
+---
+
+## Reset, Revert and Restore
+
+<details>
+<summary>What is the difference between git reset and git revert?</summary>
+
+`git reset` changes commit history, while `git revert` creates a new commit that undoes the changes of a previous commit.
+</details>
+
+<details>
+<summary>What is the difference between soft, mixed, and hard reset?</summary>
+
+- Soft: Removes commit, keeps changes staged.
+- Mixed: Removes commit, keeps changes unstaged.
+- Hard: Removes commit and deletes local changes.
+</details>
+
+<details>
+<summary>What does git restore do?</summary>
+
+It restores files in the working directory or unstages files from the staging area.
+</details>
+
+<details>
+<summary>When would you use git revert instead of git reset?</summary>
+
+When the commit has already been pushed to a shared remote repository and history should not be rewritten.
+</details>
+
+---
+
+## Stash
+
+<details>
+<summary>What is git stash?</summary>
+
+Git stash temporarily saves uncommitted changes without creating a commit.
+</details>
+
+<details>
+<summary>How do you list all stashes?</summary>
 
 ```bash
-git status
+git stash list
 ```
+</details>
 
+<details>
+<summary>What is the difference between git stash apply and git stash pop?</summary>
+
+`apply` restores the stash without deleting it. `pop` restores and removes it from the stash list.
 </details>
 
 ---
 
+## GitHub and Remote Repositories
+
 <details>
-<summary><strong>What happens when you run <code>git commit</code>?</strong></summary>
+<summary>What is origin in Git?</summary>
 
-`git commit` creates a snapshot of all staged changes and stores them permanently in the local repository.
+`origin` is the default alias for the remote repository from which a project was cloned.
+</details>
 
-Example:
+<details>
+<summary>What is upstream in Git?</summary>
+
+An upstream branch is the remote branch that your local branch tracks.
+</details>
+
+<details>
+<summary>What is the difference between git fetch and git pull?</summary>
+
+`git fetch` downloads remote changes without merging them. `git pull` downloads and merges changes automatically.
+</details>
+
+<details>
+<summary>How do you view configured remotes?</summary>
 
 ```bash
-git commit -m "Initial commit"
+git remote -v
 ```
-
 </details>
 
----
-
 <details>
-<summary><strong>What is the difference between <code>git clone</code> and <code>git fork</code>?</strong></summary>
-
-- **git clone** creates a local copy of an existing repository.
-- **Fork** creates a personal copy of someone else's repository on GitHub.
-
-Forking is commonly used when contributing to open-source projects.
-
-</details>
-
----
-
-<details>
-<summary><strong>What is the purpose of <code>git log</code>?</strong></summary>
-
-`git log` displays the commit history of the repository.
-
-Useful variations:
+<summary>How do you remove a remote repository?</summary>
 
 ```bash
-git log
-git log --oneline
-git log --graph --decorate --all
+git remote remove origin
 ```
+</details>
 
+<details>
+<summary>What is a pull request?</summary>
+
+A pull request is a request to review and merge changes from one branch into another, commonly used in GitHub workflows.
 </details>
 
 ---
 
+## Git Internals
+
 <details>
-<summary><strong>What is the difference between <code>git status</code> and <code>git diff</code>?</strong></summary>
+<summary>What is HEAD in Git?</summary>
 
-| git status | git diff |
-|-------------|-----------|
-| Shows the state of the repository. | Shows the exact line-by-line changes. |
-| Lists staged and unstaged files. | Displays code differences. |
+HEAD is a pointer that refers to the currently checked-out commit or branch.
+</details>
 
+<details>
+<summary>What is the Git object database?</summary>
+
+It is the internal storage where Git saves blobs, trees, commits, and tags.
+</details>
+
+<details>
+<summary>What are Git blobs, trees, and commits?</summary>
+
+- Blob: Stores file content.
+- Tree: Stores directory structure.
+- Commit: Stores metadata and references to tree objects.
+</details>
+
+<details>
+<summary>What is git reflog?</summary>
+
+It records all changes made to the HEAD reference and can help recover lost commits.
+</details>
+
+<details>
+<summary>Can you recover a deleted commit?</summary>
+
+Yes, in many cases it can be recovered using `git reflog`.
 </details>
 
 ---
 
+## Scenario-Based Questions
+
 <details>
-<summary><strong>What is the purpose of the <code>git reflog</code> command?</strong></summary>
+<summary>You accidentally committed to the wrong branch. What would you do?</summary>
 
-`git reflog` records all movements of `HEAD` and helps recover lost commits or branches after operations like reset or rebase.
+Create a new branch from the current state, switch back to the correct branch, and use `git reset` or `git cherry-pick` as appropriate.
+</details>
 
+<details>
+<summary>You committed a file containing sensitive information. How would you handle it?</summary>
+
+Remove the file, rewrite history using tools like `git filter-repo` or `BFG Repo-Cleaner`, and rotate any exposed credentials.
+</details>
+
+<details>
+<summary>You want to save your work without committing. What command would you use?</summary>
+
+Use:
 ```bash
-git reflog
+git stash
 ```
-
 </details>
 
----
-
 <details>
-<summary><strong>How do you rename a branch in Git?</strong></summary>
+<summary>You want to apply one commit from another branch without merging the entire branch. What should you use?</summary>
 
-Rename the current branch:
-
+Use:
 ```bash
-git branch -m new-branch-name
+git cherry-pick <commit-id>
 ```
+</details>
 
-Rename another branch:
+<details>
+<summary>You accidentally deleted a branch. Can you recover it?</summary>
 
-```bash
-git branch -m old-branch-name new-branch-name
-```
-
+Yes. Use `git reflog` to locate the last commit and recreate the branch from that commit.
 </details>
 
 ---
 
+## Advanced Questions
+
 <details>
-<summary><strong>What is the difference between <code>git pull</code> and <code>git clone</code>?</strong></summary>
+<summary>What is a detached HEAD state?</summary>
 
-- `git clone` creates a new local copy of a remote repository.
-- `git pull` updates an existing local repository by downloading and merging changes from the remote repository.
-
+A detached HEAD occurs when HEAD points directly to a commit instead of a branch.
 </details>
 
----
-
 <details>
-<summary><strong>How can you see which branch you are currently working on?</strong></summary>
+<summary>What is git bisect used for?</summary>
 
-Run:
-
-```bash
-git branch
-```
-
-The branch marked with `*` is the currently active branch.
-
-Alternatively:
-
-```bash
-git status
-```
-
-It also displays the current branch name.
-
+It performs a binary search through commit history to identify the commit that introduced a bug.
 </details>
 
----
-
 <details>
-<summary><strong>What is a merge conflict?</strong></summary>
+<summary>What are Git tags used for?</summary>
 
-A merge conflict occurs when Git cannot automatically combine changes from two branches because the same part of a file was modified differently.
-
-The conflict must be resolved manually before completing the merge.
-
+Tags are used to mark important points in history, typically software releases.
 </details>
 
----
-
 <details>
-<summary><strong>What are some advantages of using Git?</strong></summary>
+<summary>What is the difference between annotated and lightweight tags?</summary>
 
-- Distributed architecture.
-- Fast and lightweight.
-- Easy branching and merging.
-- Complete version history.
-- Supports collaboration.
-- Easy backup and recovery.
-- Free and open source.
-
+Annotated tags contain metadata (author, date, message), while lightweight tags are simple references to commits.
 </details>
 
----
-
 <details>
-<summary><strong>What is the typical Git workflow?</strong></summary>
+<summary>What are some Git best practices?</summary>
 
-```text
-Working Directory
-        │
-        ▼
-    git add
-        │
-        ▼
-  Staging Area
-        │
-        ▼
-   git commit
-        │
-        ▼
- Local Repository
-        │
-        ▼
-    git push
-        │
-        ▼
-GitHub Repository
-```
-
-Common commands:
-
-```bash
-git status
-git add .
-git commit -m "message"
-git push origin main
-```
-
+- Commit frequently with meaningful messages.
+- Use feature branches.
+- Pull before pushing.
+- Avoid force pushing to shared branches.
+- Keep commits small and focused.
+- Use `.gitignore` correctly.
 </details>

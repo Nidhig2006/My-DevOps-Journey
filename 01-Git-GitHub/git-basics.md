@@ -1,4 +1,4 @@
-# 📘 Git & GitHub Basics
+# Git & GitHub Basics
 
 ## What is Git?
 
