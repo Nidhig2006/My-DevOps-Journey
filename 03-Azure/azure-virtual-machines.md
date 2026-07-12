@@ -481,22 +481,6 @@ The upcoming sections will explain each of these components in detail while crea
 
 ---
 
-# Summary
-
-In this section, we learned:
-
-- What an Azure Virtual Machine is
-- Why Azure Virtual Machines are used
-- Real-world applications of Azure VMs
-- Azure VM Architecture
-- Benefits of Azure Virtual Machines
-- Different types of Azure Virtual Machines
-- Azure VM size series
-- Components required before creating a VM
-
-In the next section, we will learn how to create an Azure Virtual Machine using the Azure Portal, understand VM images, choose authentication methods, and connect to the VM using SSH or RDP.
----
-
 # Creating an Azure Virtual Machine
 
 Azure Virtual Machines can be created using multiple methods:
